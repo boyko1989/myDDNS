@@ -7,7 +7,7 @@ server.bind(("89.108.88.174", 12345))
 server.listen()
 
 while True:
-    user, address = server.accsept()
+    user, address = server.accept()
 
     user.send("connect".encode("utf-8"))
 
