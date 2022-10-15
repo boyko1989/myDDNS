@@ -10,9 +10,9 @@ def run():
     while True:
         client_socket, addr = server_socket.accept()
         request = client_socket.recv(1024)
-        print(request)
-        print()
-        print(addr)
+#        print(request)
+#        print()
+        print(addr[0])
         
         client_socket.sendall('hello world'.encode())
         client_socket.close()
