@@ -33,7 +33,8 @@ def run():
                     ln = line.replace('\n', '').split(sep=' ')
 
                     if (ln[0] != addr[0]) and (ln[1] != domain):
-                        outfile.write(line, 'old-line')
+                        lnes = line + 'old-line'
+                        outfile.write(lnes)
 
                     elif (ln[0] != addr[0]) and (ln[1] == domain):
                         print('Поменялся IP-адрес')
