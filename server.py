@@ -17,7 +17,7 @@ def run():
     while True:
         client_socket, addr = server_socket.accept()
         print(addr[0])
-        data = server_socket.recv(1024)
+        data = client_socket.recv(1024)
         print(data.decode("utf-8"))
 
         client_socket.close()
