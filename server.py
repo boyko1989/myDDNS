@@ -18,10 +18,8 @@ def run():
         client_socket, addr = server_socket.accept()
         request = client_socket.recv(1024)
         print(request)
-        #        print()
         print(addr[0], addr[1])
 
-        client_socket.sendall('CLIENT_DOMAIN'.encode())
         client_socket.close()
 
 
