@@ -21,7 +21,7 @@ def run():
         #        print()
         print(addr[0], addr[1])
 
-        client_socket.sendall('hello world'.encode())
+        client_socket.sendall('CLIENT_DOMAIN'.encode())
         client_socket.close()
 
 
