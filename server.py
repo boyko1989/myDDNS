@@ -16,8 +16,8 @@ def run():
 
     while True:
         client_socket, addr = server_socket.accept()
-        request = client_socket.recv(1024)
-        print(request)
+#        request = client_socket.recv(1024)
+#        print(request)
         print(addr[0])
 
         client_socket.close()
