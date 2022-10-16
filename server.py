@@ -25,9 +25,18 @@ def run():
             #print(resolve_string)
 
             with open('db/lst', 'r+', encoding='utf-8') as lst:
+                
+                not_for_write = 0
 
-                is_domain = lst.find(domain)
-                print(is_domain)
+                for line in lst: 
+                    if line.find(domain) > 0:
+                        not_for_write += 1
+
+                if not_for_write == 0:
+                    lst.write(resolve_string)
+
+
+
 
                 # for line in lst:
                 #     # print('Srting:', line)
