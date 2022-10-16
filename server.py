@@ -10,7 +10,7 @@ SERVER_MYDDNS_PORT = os.getenv("SERVER_MYDDNS_PORT")
 def run():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server_socket.bind((SERVER_MYDDNS_IP, SERVER_MYDDNS_PORT))
+    server_socket.bind((SERVER_MYDDNS_IP, 12345))
     server_socket.listen()
 
     while True:
