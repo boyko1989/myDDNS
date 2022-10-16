@@ -25,17 +25,21 @@ def run():
             #print(resolve_string)
 
             with open('db/lst', 'r+', encoding='utf-8') as lst:
-                for line in lst:
-                    # print('Srting:', line)
-                    line = line.replace('\n', '')
-                    line = line.split(sep=' ')
-                    print('----------')
-                    print(domain)
-                    print(line[1]) 
-                    if line[1] != domain:
-                        lst.write(resolve_string)
 
-                    print('----------')
+                is_domain = lst.find(domain)
+                print(is_domain)
+
+                # for line in lst:
+                #     # print('Srting:', line)
+                #     line = line.replace('\n', '')
+                #     line = line.split(sep=' ')
+                #     print('----------')
+                #     print(domain)
+                #     print(line[1])
+                #     if line[1] != domain:
+                #         lst.write(resolve_string)
+                #
+                #     print('----------')
 
 if __name__ == '__main__':
     run()
