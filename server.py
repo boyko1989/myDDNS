@@ -22,20 +22,12 @@ def run():
             data = client.recv(1024)
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
-#            print(resolve_string)
-            os.popen('cp db/lst db/lst.old')
 
             with open('db/lst.old', 'r+', encoding='utf-8') as lst:
-# 1. Условие: если нет доменного имени в списке, то записываем строку
                 not_for_write = 0
 
                 for line in lst:
                     ln = line.replace('\n', '').split(sep=' ')
-
-#                    if line.find(domain) > 0 and ln[1] == addr[0]:
-#                        not_for_write += 1
-#                        line.clear()
-#                        lst.write(resolve_string)
 
                     if line.find(domain) > 0 and ln[1] != addr[0]:
                         not_for_write += 1
@@ -48,11 +40,6 @@ def run():
                 if not_for_write == 0:
                     lst.write(resolve_string)
 
-
-# 2. Условие: если имя есть, и IP другой, то перезаписываем строку
-                pass
-
-            os.popen('mv db/lst.old db/lst')
 
 if __name__ == '__main__':
     run()
