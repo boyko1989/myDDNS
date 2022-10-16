@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SERVER_MYDDNS_IP = os.getenv("SERVER_MYDDNS_IP")
-SERVER_MYDDNS_PORT = int(os.getenv("SERVER_MYDDNS_PORT"))
+SERVER_MYDDNS_PORT = os.getenv("SERVER_MYDDNS_PORT")
 
 def run():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
