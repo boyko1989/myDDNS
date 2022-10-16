@@ -17,9 +17,10 @@ def run():
 
         server_socket.listen()
 
-        client, addr = server_socket.accept()
-        data = client.recv(1024)
-        print(addr[0], data.decode("utf-8"))
+        while True:
+            client, addr = server_socket.accept()
+            data = client.recv(1024)
+            print(addr[0], data.decode("utf-8"))
 
 
 if __name__ == '__main__':
