@@ -4,3 +4,4 @@ reqirements.txt
 .env
 *.swp
 *.bkp
+db/
