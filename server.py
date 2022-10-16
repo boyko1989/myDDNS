@@ -22,9 +22,9 @@ def run():
             data = client.recv(1024)
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
-            print(addr[0], domain)
+            print(resolve_string)
 
-            with open('db/lst', 'a', encoding='utf-8') as lst:
+            with open('db/lst', 'ra', encoding='utf-8') as lst:
                 lst.write(resolve_string)
 
 if __name__ == '__main__':
