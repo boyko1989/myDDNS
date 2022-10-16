@@ -11,12 +11,8 @@ CLIENT_DOMAIN= os.getenv("CLIENT_DOMAIN")
 def run():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((SERVER_MYDDNS_IP, SERVER_MYDDNS_PORT))
-
-    while True:
-        data = client.recv(1024)
-        print(data.decode("utf-8"))
-
-        client.send(CLIENT_DOMAIN.encode("utf-8"))
+    client.send(CLIENT_DOMAIN.encode("utf-8"))
+    client.close()
 
 if __name__ == '__main__':
     run()
