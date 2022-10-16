@@ -20,8 +20,11 @@ def run():
         while True:
             client, addr = server_socket.accept()
             data = client.recv(1024)
-            print(addr[0], data.decode("utf-8"))
+            domain = data.decode("utf-8")
+            print(addr[0], domain)
 
+            with open('db/lst', 'w+', encoding='utf-8') as lst:
+                lst.write(domain)
 
 if __name__ == '__main__':
     run()
