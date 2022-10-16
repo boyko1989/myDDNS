@@ -2,6 +2,7 @@ import socket
 import os
 from dotenv import load_dotenv
 
+# 128.69.78.197 home.boykos.ru
 load_dotenv()
 
 # noinspection SpellCheckingInspection
@@ -26,31 +27,24 @@ def run():
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
 
-#            f = open(OUTFILE, "w")
-#            f.close()
-
             with open(INFILE, encoding='utf-8') as infile, open(OUTFILE, 'w', encoding='utf-8') as outfile:
 
                 for line in infile:
                     ln = line.replace('\n', '').split(sep=' ')
-                    print(type(ln), 'Тип') # <class '_io.TextIOWrapper'> Тип
 
-                    print(ln[0], '----', ln[1])
+                    if (ln[0] != addr[0]) and (ln[1] != domain):
+                        outfile.write(line)
 
-                    # if ln[0] != domain and ln[0] != addr[0]:
-                    #     print('Новая запись')
-                    #     outfile.write(resolve_string)
-                    # 
-                    # elif ln[1] == domain and ln[0] == addr[0]:
-                    #     print('Запись имеется:', line)
-                    #     outfile.write(resolve_string)
-                    #
-                    # elif ln[1] == domain and ln[0] != addr[0]:
-                    #     print('Поменялся IP-адрес')
-                    #     outfile.write(resolve_string)
+                    elif (ln[0] != addr[0]) and (ln[1] == domain):
+                        print('Поменялся IP-адрес')
+                        outfile.write(resolve_string)
 
-    #        os.remove(INFILE)
-            os.rename(OUTFILE, 'db/real.txt')
+                    elif (ln[0] == addr[0]) and (ln[1] == domain):
+                        print('Запись имеется')
+                        outfile.write(resolve_string)
+
+        os.remove(INFILE)
+        os.rename(OUTFILE, INFILE)
 
 
 if __name__ == '__main__':
