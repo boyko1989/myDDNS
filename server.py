@@ -26,31 +26,31 @@ def run():
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
 
+#            f = open(OUTFILE, "w")
+#            f.close()
+
             with open(INFILE, encoding='utf-8') as infile, open(OUTFILE, 'w', encoding='utf-8') as outfile:
-                not_for_write = 0
 
                 for line in infile:
                     ln = line.replace('\n', '').split(sep=' ')
-                    # print(type(lst), 'Тип') # <class '_io.TextIOWrapper'> Тип
+                    print(type(ln), 'Тип') # <class '_io.TextIOWrapper'> Тип
 
-                    if line.find(domain) > 0 and ln[1] != addr[0]:
-                        not_for_write += 0
-                        print('У домена:', domain, 'поменялся IP на', addr[0])
-                        outfile.write(resolve_string)
+                    print(ln[0], '----', ln[1])
 
-                    elif line.find(domain) > 0 and ln[1] == addr[0]:
-                        not_for_write += 1
-                        print('Запись имеется:', resolve_string)
-                        break
+                    # if ln[0] != domain and ln[0] != addr[0]:
+                    #     print('Новая запись')
+                    #     outfile.write(resolve_string)
+                    # 
+                    # elif ln[1] == domain and ln[0] == addr[0]:
+                    #     print('Запись имеется:', line)
+                    #     outfile.write(resolve_string)
+                    #
+                    # elif ln[1] == domain and ln[0] != addr[0]:
+                    #     print('Поменялся IP-адрес')
+                    #     outfile.write(resolve_string)
 
-                    elif line.find(domain) < 0:
-                        not_for_write += 0
-                        outfile.write(line)
-
-                # if not_for_write == 0:
-                #     lst.write(resolve_string)
-            os.remove(INFILE)
-            os.rename(OUTFILE, INFILE)
+    #        os.remove(INFILE)
+            os.rename(OUTFILE, 'db/real.txt')
 
 
 if __name__ == '__main__':
