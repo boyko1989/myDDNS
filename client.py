@@ -15,7 +15,7 @@ def run():
         data = client.recv(1024)
         print(data.decode("utf-8"))
 
-        client.send(input().encode("utf-8"))
+        # client.send(input().encode("utf-8"))
 
 if __name__ == '__main__':
     run()
