@@ -1,8 +1,15 @@
 import socket
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SERVER_MYDDNS_IP = os.getenv("SERVER_MYDDNS_IP")
+SERVER_MYDDNS_PORT = int(os.getenv("SERVER_MYDDNS_PORT"))
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-client.connect(("89.108.88.174", 12345))
+client.connect((SERVER_MYDDNS_IP, SERVER_MYDDNS_PORT))
 
 while True:
     data = client.recv(1024)

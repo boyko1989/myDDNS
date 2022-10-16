@@ -1,4 +1,5 @@
 venv
 reqirements.txt
 .idea/
+.env
 
