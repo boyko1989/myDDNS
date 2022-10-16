@@ -22,33 +22,29 @@ def run():
             data = client.recv(1024)
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
-            #print(resolve_string)
+            # print(resolve_string)
 
             with open('db/lst', 'r+', encoding='utf-8') as lst:
-                
+# 1. Условие: если нет доменного имени в списке, то записываем строку
                 not_for_write = 0
 
-                for line in lst: 
-                    if line.find(domain) > 0:
+                for line in lst:
+                    ln = line.replace('\n', '')
+                    ln = ln.split(sep=' ')
+                    if line.find(domain) > 0 and ln[1] == addr[0]:
+                        line.replace(line, '')
+                        lst.write(resolve_string)
+                    elif line.find(domain) > 0 and ln[1] != addr[0]:
                         not_for_write += 1
+
 
                 if not_for_write == 0:
                     lst.write(resolve_string)
+                # elif
+# 2. Условие: если имя есть, и IP другой, то перезаписываем строку
+                pass
 
 
-
-
-                # for line in lst:
-                #     # print('Srting:', line)
-                #     line = line.replace('\n', '')
-                #     line = line.split(sep=' ')
-                #     print('----------')
-                #     print(domain)
-                #     print(line[1])
-                #     if line[1] != domain:
-                #         lst.write(resolve_string)
-                #
-                #     print('----------')
 
 if __name__ == '__main__':
     run()
