@@ -28,9 +28,10 @@ def run():
 
                 for line in lst:
                     ln = line.replace('\n', '').split(sep=' ')
+                    print(type(lst), 'Тип')
 
                     if line.find(domain) > 0 and ln[1] != addr[0]:
-                        lst.replace(line, '')
+                       # lst.replace(line, '')
                         not_for_write += 0
                         print('Запись имеется:', resolve_string)
                         break
