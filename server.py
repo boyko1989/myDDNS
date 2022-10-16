@@ -9,6 +9,9 @@ SERVER_MYDDNS_IP = os.getenv("SERVER_MYDDNS_IP")
 # noinspection SpellCheckingInspection
 SERVER_MYDDNS_PORT = int(os.getenv("SERVER_MYDDNS_PORT"))
 
+INFILE = "db/lst"
+OUTFILE = "db/lst.tmp"
+
 
 def run():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
@@ -23,18 +26,17 @@ def run():
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
 
-            with open('db/lst', 'r+', encoding='utf-8') as lst:
+            with open(INFILE, encoding='utf-8') as infile, open(OUTFILE, 'w', encoding='utf-8') as outfile:
                 not_for_write = 0
 
-                for line in lst:
+                for line in infile:
                     ln = line.replace('\n', '').split(sep=' ')
-                    print(type(lst), 'Тип')
+                    # print(type(lst), 'Тип') # <class '_io.TextIOWrapper'> Тип
 
                     if line.find(domain) > 0 and ln[1] != addr[0]:
-                       # lst.replace(line, '')
                         not_for_write += 0
-                        print('Запись имеется:', resolve_string)
-                        break
+                        print('У домена:', domain, 'поменялся IP на', addr[0])
+                        outfile.write(resolve_string)
 
                     elif line.find(domain) > 0 and ln[1] == addr[0]:
                         not_for_write += 1
@@ -43,9 +45,12 @@ def run():
 
                     elif line.find(domain) < 0:
                         not_for_write += 0
+                        outfile.write(line)
 
-                if not_for_write == 0:
-                    lst.write(resolve_string)
+                # if not_for_write == 0:
+                #     lst.write(resolve_string)
+            os.remove(INFILE)
+            os.rename(OUTFILE, INFILE)
 
 
 if __name__ == '__main__':
