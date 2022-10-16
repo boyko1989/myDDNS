@@ -27,19 +27,21 @@ def run():
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
 
-            with open(INFILE, encoding='utf-8') as infile, open(OUTFILE, 'w', encoding='utf-8') as outfile:
+            with open(INFILE, 'r', encoding='utf-8') as infile, open(OUTFILE, 'w+', encoding='utf-8') as outfile:
 
                 for line in infile:
                     ln = line.replace('\n', '').split(sep=' ')
 
                     if (ln[0] != addr[0]) and (ln[1] != domain):
-                        lnes = line + 'old-line'
-                        print(lnes, '- проходная запись')
-                        outfile.write(lnes)
+                        print('проходная запись')
+                        lin = ln[0] + ln[1]
+                        outfile.write(lin)
+                        break
 
                     elif (ln[0] != addr[0]) and (ln[1] == domain):
                         print('Поменялся IP-адрес')
                         outfile.write(resolve_string)
+                        break
 
                     elif (ln[0] == addr[0]) and (ln[1] == domain):
                         print('Запись имеется')
