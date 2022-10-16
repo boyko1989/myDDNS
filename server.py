@@ -24,7 +24,7 @@ def run():
             resolve_string = addr[0] + ' ' + domain + '\n'
             print(addr[0], domain)
 
-            with open('db/lst', 'w+', encoding='utf-8') as lst:
+            with open('db/lst', 'a', encoding='utf-8') as lst:
                 lst.write(resolve_string)
 
 if __name__ == '__main__':
