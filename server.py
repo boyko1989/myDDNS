@@ -34,6 +34,7 @@ def run():
 
                     if (ln[0] != addr[0]) and (ln[1] != domain):
                         lnes = line + 'old-line'
+                        print(lnes, '- проходная запись')
                         outfile.write(lnes)
 
                     elif (ln[0] != addr[0]) and (ln[1] == domain):
