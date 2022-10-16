@@ -21,10 +21,11 @@ def run():
             client, addr = server_socket.accept()
             data = client.recv(1024)
             domain = data.decode("utf-8")
+            resolve_string = addr[0] + domain
             print(addr[0], domain)
 
             with open('db/lst', 'w+', encoding='utf-8') as lst:
-                lst.write(domain)
+                lst.write(resolve_string)
 
 if __name__ == '__main__':
     run()
