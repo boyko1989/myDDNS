@@ -23,13 +23,19 @@ def run():
             domain = data.decode("utf-8")
             resolve_string = addr[0] + ' ' + domain + '\n'
 
-            with open('db/lst.old', 'r+', encoding='utf-8') as lst:
+            with open('db/lst', 'r+', encoding='utf-8') as lst:
                 not_for_write = 0
 
                 for line in lst:
                     ln = line.replace('\n', '').split(sep=' ')
 
                     if line.find(domain) > 0 and ln[1] != addr[0]:
+                        lst.replace(line, '')
+                        not_for_write += 0
+                        print('Запись имеется:', resolve_string)
+                        break
+
+                    elif line.find(domain) > 0 and ln[1] == addr[0]:
                         not_for_write += 1
                         print('Запись имеется:', resolve_string)
                         break
