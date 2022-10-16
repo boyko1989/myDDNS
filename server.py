@@ -27,8 +27,9 @@ def run():
             with open('db/lst', 'a+', encoding='utf-8') as lst:
         #        for line in lst:
         #            print("Строка", line)
-        #        lst.read()
-                lst.write(resolve_string)
+                db_line = lst.read()
+                print(db_line)
+                # lst.write(resolve_string)
 
 if __name__ == '__main__':
     run()
